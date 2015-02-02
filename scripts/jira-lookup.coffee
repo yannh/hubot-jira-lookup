@@ -52,6 +52,6 @@ module.exports = (robot) ->
             unless json.fields.status is null or json.fields.status.nil? or json.fields.status.empty?
               unless json.fields.status.name.nil? or json.fields.status.name.empty?
                 json_status += json.fields.status.name
-          msg.send "<a href=\"#{process.env.HUBOT_JIRA_LOOKUP_URL}/browse/#{json.key}\">#{json.key}</a>: #{json_summary} (<strong>#{json_status}</strong> - Assigned to <a href=\"#{process.env.HUBOT_JIRA_LOOKUP_URL}/secure/ViewProfile.jspa?name=#{json_assignee}\">{json_assignee}</a>)\n"
+          msg.send "#{json.key}: #{json_summary} (#{json_status} - Assigned to #{json_assignee})\n#{process.env.HUBOT_JIRA_LOOKUP_URL}/browse/#{json.key}\n"
         catch error
           msg.send "*sinister laugh*"
